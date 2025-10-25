@@ -49,12 +49,6 @@ text
 - **Storage**: Cloudinary
 - **Deployment**: Vercel
 
-## 🚀 Deploy to Vercel
-
-1. Push to GitHub
-2. Connect repo to Vercel
-3. Add environment variables
-4. Deploy!
 
 ## 📱 Usage
 
