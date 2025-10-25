@@ -57,3 +57,25 @@ text
 3. **Edit Portfolio**: Click edit button → Update → Save
 
 ---
+
+
+## 🖼️ UI Screenshots
+
+### 🏠 landing Page
+![Property Listing](screenshots/home_landingpage.png)
+
+### template sections
+![Add Property Form](screenshots/templateSection.png)
+
+### form page
+![Property Modal](screenshots/form-page.png)
+
+### Portfolios page
+![Property Modal](screenshots/portfolios-page.png)
+
+### template 1 portfolio 
+![Property Modal](screenshots/template1.png)
+
+### template 2 portfolio
+![Property Modal](screenshots/template2.png)
+
