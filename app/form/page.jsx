@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import HeroAboutStep from "../components/Steps/HeroAboutStep";
@@ -7,7 +7,8 @@ import SkillsServicesStep from "../components/Steps/SkillsServicesStep";
 import TestimonialsBlogStep from "../components/Steps/TestimonialsBlogStep";
 import PortfolioContactStep from "../components/Steps/PortfolioContactStep";
 
-const PortfolioForm = () => {
+// Separate component that uses useSearchParams
+function FormContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
@@ -70,7 +71,6 @@ const PortfolioForm = () => {
     },
   ];
 
-
   // Cloudinary upload function
   const uploadToCloudinary = async (file) => {
     const cloudFormData = new FormData();
@@ -87,14 +87,14 @@ const PortfolioForm = () => {
       );
 
       if (!response.ok) {
-        alert(response.statusText)
+        alert(response.statusText);
       }
 
       const data = await response.json();
       return data.secure_url;
     } catch (error) {
       console.error("Cloudinary upload error:", error);
-      alert(error)
+      alert(error);
     }
   };
 
@@ -119,7 +119,6 @@ const PortfolioForm = () => {
     console.log("Form submitted:", formData);
 
     try {
-
       // Upload profile image to Cloudinary first
       let profileImageUrl = formData.profileImageUrl;
       if (formData.profileImage) {
@@ -146,13 +145,12 @@ const PortfolioForm = () => {
         })
       );
 
-    
       const validTestimonials = formData.testimonials.filter(
         (t) => t.name && t.quote
       );
       const validBlogs = formData.blogs.filter((b) => b.title && b.summary);
 
-      // final data for backend 
+      // final data for backend
       const finalData = {
         template: formData.template,
         name: formData.name,
@@ -176,7 +174,6 @@ const PortfolioForm = () => {
 
       console.log("Sending final data to backend:", finalData);
 
-      
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/portfolio/create`,
         {
@@ -189,8 +186,9 @@ const PortfolioForm = () => {
       );
 
       if (!response.ok) {
-        alert(`${response.msg}`);
-        
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message || response.statusText}`);
+        return;
       }
 
       const data = await response.json();
@@ -211,7 +209,6 @@ const PortfolioForm = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-4 px-4">
       <div className="max-w-6xl mx-auto">
-      
         <div className="bg-white rounded-xl shadow-sm p-4 mb-4">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-xl md:text-2xl font-bold text-gray-900">
@@ -264,7 +261,6 @@ const PortfolioForm = () => {
             updateFormData={updateFormData}
           />
 
-         
           <div className="flex justify-between mt-6 pt-4 border-t border-gray-200">
             <button
               onClick={prevStep}
@@ -307,6 +303,23 @@ const PortfolioForm = () => {
         </div>
       </div>
     </div>
+  );
+}
+
+const PortfolioForm = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 d-flex align-items-center justify-content-center">
+        <div className="text-center">
+          <div className="spinner-border text-primary mb-3" role="status" style={{ width: '3rem', height: '3rem' }}>
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <h5 className="text-muted">Loading Portfolio Form...</h5>
+        </div>
+      </div>
+    }>
+      <FormContent />
+    </Suspense>
   );
 };
 
