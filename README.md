@@ -1,36 +1,65 @@
-    This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio Builder Platform
 
-    ## Getting Started
+A modern portfolio builder with customizable templates. Create stunning developer portfolios in minutes using Next.js, MongoDB, and Cloudinary.
 
-    First, run the development server:
+## ✨ Features
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
+- **2 Beautiful Templates** - Choose between classic and modern designs
+- **Complete Portfolio Sections** - Hero, About, Skills, Projects, Testimonials, Blog, Contact
+- **Image Upload** - Cloudinary integration for optimized images
+- **Step-by-step Builder** - Easy 4-step portfolio creation
+- **Edit Functionality** - Update portfolios anytime
+- **Responsive Design** - Mobile-first approach
 
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Setup
 
-    You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 1. Clone & Install
+git clone https://github.com/rahulsr-ai/portfolio-generator-react.git
+cd portfolio-generator-react
+npm install
 
-    This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+text
 
-    ## Learn More
+### 2. Environment Variables
+Create `.env.local`:
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your_cloud_name"
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET="portfolio_uploads"
+NEXT_PUBLIC_CLOUDINARY_API_KEY="your_api_key"
+CLOUDINARY_API_SECRET="your_api_secret"
+MONGO_URI="mongodb+srv://username:password@cluster.mongodb.net/portfolio-db"
+NEXT_PUBLIC_URL="http://localhost:3000"
+NODE_ENV="development"
 
-    To learn more about Next.js, take a look at the following resources:
+text
 
-    - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-    - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Setup Services
+- **MongoDB Atlas**: Create cluster → Get connection string
+- **Cloudinary**: Create account → Create unsigned upload preset `portfolio_uploads`
 
-    You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Run
+npm run dev
 
-    ## Deploy on Vercel
+text
 
-    The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Tech Stack
 
-    Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: Next.js 14, React, Bootstrap 5
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB Atlas
+- **Storage**: Cloudinary
+- **Deployment**: Vercel
+
+## 🚀 Deploy to Vercel
+
+1. Push to GitHub
+2. Connect repo to Vercel
+3. Add environment variables
+4. Deploy!
+
+## 📱 Usage
+
+1. **Create Portfolio**: Choose template → Fill 4-step form → Submit
+2. **View Portfolios**: Browse showcase with search/filter
+3. **Edit Portfolio**: Click edit button → Update → Save
+
+---
