@@ -17,7 +17,7 @@ export async function POST(request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { success: false, message: "This email is already registered" },
+        { success: false, message: "use a different email address or phone number" },
         { status: 400 }
       );
     }
